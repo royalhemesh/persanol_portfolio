@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #070D14;
+    /* Deep naval/charcoal */
+    --bg-secondary: #0D1B2A;
+    /* Surface cards */
+    --text-primary: #F0F6FF;
+    --text-secondary: #6B8CAE;
+    /* Muted */
+    --accent: #00D4AA;
+    /* Electric Teal */
+    --accent-secondary: #0096FF;
+    /* Electric Blue */
+    --border-color: #1A2E42;
+  }
+
+  body {
+    @apply bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans transition-colors duration-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .narrative-heading {
+    @apply font-playfair;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-[#0D1B2A]/70 backdrop-blur-xl border border-[#1A2E42] shadow-2xl;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)];
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Particles Canvas */
+#particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Custom Cursor */
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.2s, background-color 0.3s, transform 0.2s ease-out;
+}
+
+.cursor-hover .custom-cursor-ring {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(0, 212, 170, 0.1);
+  border-color: var(--accent-secondary);
+}
+
+.cursor-hover .custom-cursor-dot {
+  background-color: transparent;
+}
+
+/* Background Noise Texture */
+.bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  /* Below content, above canvas */
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Staggered text reveal */
+.word-reveal span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Nav Link Underline */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Scanline Project Card Hover */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-card:hover::before {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 20px rgba(0, 212, 170, 0.15);
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 70%, var(--accent) 100%);
+  animation: scanlineRotate 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.project-card:hover::after {
+  opacity: 0.15;
+}
+
+@keyframes scanlineRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Section Line Divider */
+.section-divider {
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 0 auto;
+}
+
+/* Pulsing Glow Button */
+.btn-glow {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-glow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 212, 170, 0.4);
+  color: #070D14 !important;
+  border-color: transparent !important;
+}
+
+.btn-glow:hover::before {
+  opacity: 1;
+}
+
+/* Input Underline Glow */
+.input-animated {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid var(--border-color) !important;
+  border-radius: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.input-animated:focus {
+  border-bottom-color: var(--accent) !important;
+  box-shadow: 0 4px 6px -6px var(--accent) !important;
+  outline: none !important;
+}
+
+/* Back to Top */
+#back-to-top {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Section watermark numbers */
+.section-watermark {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+  font-family: inherit;
+  line-height: 1;
+  z-index: 0;
+  white-space: nowrap;
+}

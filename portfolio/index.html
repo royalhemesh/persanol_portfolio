@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponthala Hemesh Babu | Data Analyst</title>
+
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'sans-serif'],
+                        playfair: ['"Playfair Display"', 'serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                        serif: ['"DM Serif Display"', 'serif'],
+                    },
+                    colors: {
+                        primary: 'var(--bg-primary)',
+                        secondary: 'var(--bg-secondary)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- GSAP & Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body
+    class="antialiased overflow-x-hidden relative bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans transition-colors duration-300">
+
+    <!-- Custom Cursor & Noise -->
+    <div class="custom-cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor-ring" id="cursor-ring"></div>
+    <div class="bg-noise"></div>
+
+    <!-- Navigation -->
+    <nav class="absolute w-full z-50 glass-panel border-b-0 py-4 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold font-playfair tracking-tight">H.<span
+                    class="text-[var(--accent)]">Babu</span></a>
+
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#act1"
+                    class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">I.
+                    The
+                    Spark</a>
+                <a href="#act2"
+                    class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">II.
+                    The Lab</a>
+                <a href="#act3"
+                    class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">III.
+                    The
+                    Impact</a>
+            </div>
+
+            <button class="md:hidden" id="mobile-menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+        <!-- GLOBAL BACKGROUND EFFECTS -->
+        <div class="fixed inset-0 z-0 pointer-events-none">
+            <canvas id="particles-canvas"></canvas>
+        </div>
+
+        <!-- ACT 1: THE SPARK -->
+        <section id="act1" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+
+            <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                <div class="hero-content space-y-6">
+                    <p class="text-[var(--accent)] font-medium font-mono uppercase text-sm fade-up">Act I: The
+                        Spark</p>
+                    <h1 class="text-5xl md:text-7xl font-playfair font-bold leading-tight word-reveal">
+                        <span>Finding</span> <span>the</span> <br />
+                        <span class="text-gradient">Signal</span> <span>in</span> <span>the</span> <span>Noise.</span>
+                    </h1>
+                    <p class="text-lg text-[var(--text-secondary)] max-w-xl leading-relaxed fade-up">
+                        I am Ponthala Hemesh Babu. A Data Analyst driven by curiosity and pattern recognition. I
+                        transform raw datasets into meaningful stories, helping organizations navigate complexity with
+                        clarity and precision.
+                    </p>
+
+                    <div class="flex space-x-4 pt-4 fade-up">
+                        <a href="#act2"
+                            class="px-8 py-3 bg-[var(--accent)] text-[#070D14] rounded-full font-medium btn-glow flex items-center gap-2">
+                            Enter the Lab <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://github.com/royalhemesh" target="_blank"
+                            class="p-3 border border-[var(--border-color)] rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/hemesh-babu-ponthala" target="_blank"
+                            class="p-3 border border-[var(--border-color)] rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual relative flex justify-center fade-up mt-12 md:mt-0">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/30 to-blue-500/10 rounded-full blur-3xl">
+                    </div>
+                    <img src="assets/profile.jpg" alt="Ponthala Hemesh Babu"
+                        class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl shadow-2xl border-2 border-[var(--accent)] z-10 transition-all duration-700 hover:scale-[1.02]">
+                </div>
+            </div>
+
+            <div
+                class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce md:block hidden">
+                <span class="text-xs text-[var(--text-secondary)] mb-2 uppercase tracking-widest">Scroll to
+                    discover</span>
+                <i data-lucide="mouse" class="w-5 h-5 text-[var(--text-secondary)]"></i>
+            </div>
+        </section>
+
+        <!-- Section Line Divider -->
+        <div class="section-divider divider-anim"></div>
+
+        <!-- ACT 2: THE LAB -->
+        <section id="act2" class="py-24 bg-[var(--bg-secondary)] dark:text-white relative overflow-hidden">
+            <div class="container mx-auto px-6 relative z-10">
+                <!-- Header -->
+                <div class="mb-20 text-center max-w-2xl mx-auto space-y-4 relative">
+                    <div class="section-watermark">01</div>
+                    <p
+                        class="text-[var(--accent)] font-mono font-medium uppercase text-sm section-header relative z-10">
+                        Act II:
+                        The Lab</p>
+                    <h2 class="text-4xl md:text-5xl font-playfair font-bold section-header relative z-10">Instruments of
+                        Investigation
+                    </h2>
+                    <p class="text-[var(--text-secondary)] section-header relative z-10">Where hypothesis meets data. A
+                        showcase of
+                        methodologies, programming logic, and analytical models used to decipher complex business
+                        challenges.</p>
+                </div>
+
+                <!-- Skills & Tools -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24 skill-grid">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Projects Investigation Grid -->
+                <div class="space-y-16">
+                    <h3 class="text-3xl font-playfair font-semibold text-center mb-12">Case Files & Investigations</h3>
+                    <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Line Divider -->
+        <div class="section-divider divider-anim"></div>
+
+        <!-- Live Data Visuals (Mid-section) -->
+        <section class="py-20 relative overflow-hidden bg-[var(--bg-primary)]">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="mb-16 text-center max-w-2xl mx-auto relative">
+                    <div class="section-watermark">02</div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 content-fade relative z-10">
+                        <h3 class="text-3xl font-playfair font-bold">Visualizing the Unseen</h3>
+                        <p class="text-[var(--text-secondary)] text-lg">Data without visualization is just noise. We map
+                            coordinates, trace trends, and paint pictures with pixels to make the invisible intuitive.
+                        </p>
+                        <div class="space-y-4 pt-4">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                    <i data-lucide="bar-chart-2"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Trend Analysis</h4>
+                                    <p class="text-sm text-[var(--text-secondary)]">Spotting momentum before it peaks.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center text-teal-600 dark:text-teal-400">
+                                    <i data-lucide="pie-chart"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Distribution Logic</h4>
+                                    <p class="text-sm text-[var(--text-secondary)]">Understanding allocation and impact.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel rounded-2xl p-6 chart-container shadow-2xl">
+                        <canvas id="demoChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Line Divider -->
+        <div class="section-divider divider-anim"></div>
+
+        <!-- ACT 3: THE IMPACT -->
+        <section id="act3" class="py-24 relative overflow-hidden">
+            <div class="container mx-auto px-6 max-w-4xl relative z-10">
+                <div class="text-center space-y-4 mb-16 relative">
+                    <div class="section-watermark">03</div>
+                    <p
+                        class="text-[var(--accent)] font-mono font-medium uppercase text-sm fade-up-impact relative z-10">
+                        Act
+                        III: The Impact</p>
+                    <h2 class="text-4xl md:text-5xl font-playfair font-bold fade-up-impact relative z-10">Meaning from
+                        Metrics</h2>
+                    <p class="text-[var(--text-secondary)] text-lg fade-up-impact relative z-10">Data is only as
+                        valuable as the
+                        decisions it drives. Let's build strategies tailored to truth.</p>
+                </div>
+
+                <div
+                    class="glass-panel rounded-2xl p-8 md:p-12 relative overflow-hidden fade-up-impact bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl z-20 shadow-[0_0_40px_rgba(0,0,0,0.1)]">
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-[var(--accent)]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3">
+                    </div>
+
+                    <form id="contact-form" class="space-y-6 relative z-10">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="name" class="text-sm font-mono text-[var(--text-secondary)]">Name</label>
+                                <input type="text" id="name"
+                                    class="w-full w-full bg-transparent border border-[var(--border-color)] rounded-lg px-4 py-3 focus:outline-none focus:border-[var(--accent)] transition-colors input-animated"
+                                    placeholder="John Doe" required>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="email" class="text-sm font-mono text-[var(--text-secondary)]">Email</label>
+                                <input type="email" id="email"
+                                    class="w-full w-full bg-transparent border border-[var(--border-color)] rounded-lg px-4 py-3 focus:outline-none focus:border-[var(--accent)] transition-colors input-animated"
+                                    placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="message" class="text-sm font-mono text-[var(--text-secondary)]">Your Hypothesis
+                                (Message)</label>
+                            <textarea id="message" rows="4"
+                                class="w-full bg-transparent border border-[var(--border-color)] rounded-lg px-4 py-3 focus:outline-none focus:border-[var(--accent)] transition-colors resize-none input-animated"
+                                placeholder="Let's investigate..." required></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-[var(--accent)] text-[#070D14] rounded-lg px-6 py-4 font-medium btn-glow flex items-center justify-center gap-2 group">
+                            Transmit Signal <i data-lucide="send"
+                                class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="modal-overlay"></div>
+        <div class="glass-panel text-[var(--text-primary)] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl relative z-10 transform scale-95 opacity-0 transition-all duration-300 mx-4 shadow-2xl"
+            id="modal-content">
+            <button id="close-modal"
+                class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors">
+                <i data-lucide="x"></i>
+            </button>
+            <div id="modal-body" class="p-8">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top"
+        class="fixed bottom-8 right-8 p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white hover:bg-[var(--accent)] hover:text-[#070D14] hover:border-[var(--accent)] shadow-lg z-50">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="border-t border-[var(--border-color)] py-12 bg-[var(--bg-secondary)] relative z-10">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="#" class="text-2xl font-bold font-playfair tracking-tight">H.<span
+                    class="text-[var(--accent)]">Babu</span></a>
+
+            <p class="text-[var(--text-secondary)] text-sm font-mono">
+                © <span id="year"></span> Ponthala Hemesh Babu. Analyzing the future.
+            </p>
+
+            <div class="flex space-x-4">
+                <a href="https://github.com/royalhemesh" target="_blank"
+                    class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/hemesh-babu-ponthala" target="_blank"
+                    class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="mailto:hemeshbabuponthala@example.com"
+                    class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts Integration -->
+    <script src="js/data.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
