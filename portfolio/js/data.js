@@ -22,7 +22,7 @@ const portfolioData = {
             tools: ["SQL", "MySQL", "Data Cleaning"],
             findings: "Reduced query execution time by ~70% (from 1.0s to 0.3s). Successfully translated historical data into actionable inventory planning datasets.",
             impact: "Directly supported functional channel owners in inventory restructuring and demand forecasting efficiency.",
-            repo: "github.com/royalhemesh/retail-demand-sql"
+            repo: "github.com/royalhemesh/weekly_demand_forecasting_using_sql"
         },
         {
             id: 2,
@@ -50,7 +50,7 @@ const portfolioData = {
             tools: ["Python", "Scikit-Learn (Gradient Boosting)", "SQL", "Power BI"],
             findings: "Pinpointed the highest-probability conversion segments, reducing wasted spend.",
             impact: "Simulated a 617% profit increase (₹42,040 → ₹3,01,540) by optimizing the targeting strategy for senior leadership.",
-            repo: "github.com/royalhemesh/bank-marketing-analysis"
+            repo: "github.com/royalhemesh/Bank-Marketing-Profit-Optimization"
         }
     ]
 };

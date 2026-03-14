@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < linkDistance) {
+                        const opacity = 1 - (distance / linkDistance);
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
